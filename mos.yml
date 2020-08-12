@@ -1,24 +1,32 @@
-name: mgos_empty_lib
+name: mgos_arduino_sdlib
 author: Apoorva Singh <apoorvasingh@thepodnet.com>
 type: lib
-description: An empty lib that does nothing
+description: Port of SD.h and FS.h from ESP32 Arduino core
 version: 0.1
 
 
-sources:
-  - src
+tags:
+  - c
 
 includes:
   - include
+  - include/fatfs
+  - include/arduino-core
 
-filesystem:
-  - fs
+sources:
+  - src
+  - src/arduino-core
+
+binary_libs:
+  - binary_libs/libfatfs.a
+  - binary_libs/libesp32.a
 
 config_schema:
+  - ["debug.level", 3]
+
 libs:
+  - origin: https://github.com/mongoose-os-libs/boards
 
-tags:
-  - c
-  - docs:misc:Empty
 
+# Used by the mos tool to catch mos binaries incompatible with this file format
 manifest_version: 2017-09-29
